@@ -40,7 +40,7 @@ namespace MyFilmMVCV1.Controllers
                 HttpContext.Session.SetString(SessionName, "Jarvik");
                 HttpContext.Session.SetInt32(SessionAge, 24);
             }
-            List<Movie> model = _context.Movies.ToList();
+            List<Film> model = _context.Films.ToList();
             return View(model);
         }
 
@@ -50,7 +50,7 @@ namespace MyFilmMVCV1.Controllers
             ViewBag.Name = HttpContext.Session.GetString(SessionName);
             ViewBag.Age = HttpContext.Session.GetInt32(SessionAge);
 
-            var movies = from m in _context.Movies
+            var movies = from m in _context.Films
 
                         select m;
 
@@ -67,10 +67,10 @@ namespace MyFilmMVCV1.Controllers
                 movies = movies.Where(x => x.FilmCertificate == certType);
             }
 
-            var filmCerts = _context.Movies.Select(m => m.FilmCertificate).Distinct();
+            var filmCerts = _context.Films.Select(m => m.FilmCertificate).Distinct();
 
 
-            List<Movie> model = movies.ToList();
+            List<Film> model = movies.ToList();
             ViewData["SearchString"] = SearchString;
             ViewData["FilterFilmCert"] = certType;
             ViewData["filmCerts"] = filmCerts.ToList();
@@ -84,7 +84,7 @@ namespace MyFilmMVCV1.Controllers
         public IActionResult MovieDetails(int id)
         {
             //List<Movie> model = _context.Movies.Find(FilmID);
-            Movie model = _context.Movies.Find(id);
+            Film model = _context.Films.Find(id);
             return View(model);
         }
 

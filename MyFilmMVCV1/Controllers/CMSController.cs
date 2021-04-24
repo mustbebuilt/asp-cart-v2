@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -23,17 +25,22 @@ namespace MyFilmMVCV1.Controllers
 
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public CMSController(ILogger<CMSController> logger, ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
+        private readonly UserManager<AppIdentityUser> _userManager;
+
+        public CMSController(ILogger<CMSController> logger, ApplicationDbContext context, IWebHostEnvironment hostEnvironment, UserManager<AppIdentityUser> userManager)
         {
             _context = context;
             _logger = logger;
             _webHostEnvironment = hostEnvironment;
+            _userManager = userManager;
         }
 
         // GET: /<controller>/
         public IActionResult Index()
         {
-            List<Movie> model = _context.Movies.ToList();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewData["userId"] = userId;
+            List<Film> model = _context.Films.ToList();
             return View(model);
         }
 
@@ -44,7 +51,7 @@ namespace MyFilmMVCV1.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddMovie(MovieForm model)
+        public IActionResult AddMovie(FilmForm model)
         //public async Task<IActionResult> New(EmployeeViewModel model)
         {
             //_context.Movies.Add(model);
@@ -72,7 +79,7 @@ namespace MyFilmMVCV1.Controllers
                     return View();
                 }
 
-                Movie newFilm = new Movie
+                Film newFilm = new Film
                 {
                     FilmTitle = model.FilmTitle,
                     FilmCertificate = model.FilmCertificate,
@@ -91,7 +98,7 @@ namespace MyFilmMVCV1.Controllers
 
         }
 
-            private Tuple<string, string, long> UploadedFile(MovieForm model)
+            private Tuple<string, string, long> UploadedFile(FilmForm model)
             {
                 string uniqueFileName = null;
                 string fileExtension = null;
@@ -121,8 +128,8 @@ namespace MyFilmMVCV1.Controllers
         public IActionResult UpdateMovie(int id)
         {
             //List<Film> model = _context.Films.Find(Id);
-            Movie model = _context.Movies.Find(id);
-            MovieForm formModel = new MovieForm
+            Film model = _context.Films.Find(id);
+            FilmForm formModel = new FilmForm
             {
                 FilmID = model.FilmID,
                 FilmTitle = model.FilmTitle,
@@ -137,7 +144,7 @@ namespace MyFilmMVCV1.Controllers
         }
 
         [HttpPost]
-        public IActionResult UpdateMovie(MovieForm model)
+        public IActionResult UpdateMovie(FilmForm model)
         {
             // Only run if image is changed
             if (model.FilmImage != null)
@@ -161,7 +168,7 @@ namespace MyFilmMVCV1.Controllers
                     return View();
                 }
 
-                Movie editFilm = new Movie
+                Film editFilm = new Film
                 {
                     FilmID = model.FilmID,
                     FilmTitle = model.FilmTitle,
@@ -172,11 +179,11 @@ namespace MyFilmMVCV1.Controllers
                     ReleaseDate = model.ReleaseDate,
                     FilmImage = uniqueFileName,
                 };
-                _context.Movies.Update(editFilm);
+                _context.Films.Update(editFilm);
             }
             else
             {
-                Movie editFilm = new Movie
+                Film editFilm = new Film
                 {
                     FilmID = model.FilmID,
                     FilmTitle = model.FilmTitle,
@@ -186,7 +193,7 @@ namespace MyFilmMVCV1.Controllers
                     Stars = model.Stars,
                     ReleaseDate = model.ReleaseDate
                 };
-                _context.Movies.Update(editFilm);
+                _context.Films.Update(editFilm);
             }
             _context.SaveChanges();
             return RedirectToAction("Index");
@@ -199,14 +206,14 @@ namespace MyFilmMVCV1.Controllers
         [HttpGet]
         public IActionResult DeleteMovie(int Id)
         {
-            Movie model = _context.Movies.Find(Id);
+            Film model = _context.Films.Find(Id);
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult DeleteMovie(Movie model)
+        public IActionResult DeleteMovie(Film model)
         {
-            _context.Movies.Remove(model);
+            _context.Films.Remove(model);
             _context.SaveChanges();
             //return View(model);
             return RedirectToAction("Index");

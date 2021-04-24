@@ -9,7 +9,7 @@ using MyFilmMVCV1.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
-
+using Microsoft.AspNetCore.Http;
 
 namespace MyFilmMVCV1.Controllers
 {
@@ -89,6 +89,7 @@ namespace MyFilmMVCV1.Controllers
 
                 if (result.Succeeded)
                 {
+                  
                     return RedirectToAction("Index", "CMS");
                 }
                 else

@@ -27,10 +27,10 @@ namespace MyFilmMVCV1
         {
             services.AddControllersWithViews();
             services.AddDbContext<ApplicationDbContext>(options =>
-options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDbContext<AppIdentityDbContext>(options =>
-options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<AppIdentityUser, AppIdentityRole>()
         .AddEntityFrameworkStores<AppIdentityDbContext>();
