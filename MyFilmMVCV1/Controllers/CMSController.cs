@@ -38,8 +38,11 @@ namespace MyFilmMVCV1.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
+            // get userId via claims
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             ViewData["userId"] = userId;
+            // get userId via userManager
+            ViewData["userInfo"] = _userManager.GetUserId(User);
             List<Film> model = _context.Films.ToList();
             return View(model);
         }
