@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4zL9ppYqS0Gf0NX+N9iQq30vhLNOu8FJzOKZd2Er7cDioFvVlPpgBERL8b4JbwXPOEJrXTVJplo/qQBq1Y7elA==",
+  "dgSpecHash": "0zn7WMysvQOtZNseTBJZ9TifTFTXeCQMiUxuhnNTGnllQS0R60oXCgOtJI6a5vbtC66B+k13TlHyzT60I9hcFg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\LabStudent-55-504266\\Source\\Repos\\asp-cart-v2\\MyFilmMVCV1\\MyFilmMVCV1.csproj",
+  "projectFilePath": "C:\\Users\\LabStudent-55-504266\\source\\repos\\asp-cart-v2\\MyFilmMVCV1\\MyFilmMVCV1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LabStudent-55-504266\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\LabStudent-55-504266\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.5\\microsoft.aspnetcore.cryptography.internal.5.0.5.nupkg.sha512",

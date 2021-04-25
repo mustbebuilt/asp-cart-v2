@@ -174,21 +174,36 @@ namespace MyFilmMVCV1.Controllers
             HttpContext.Session.SetString(SessionCart, JsonSerializer.Serialize(CartList));
             TempData["msg"] = "Item Removed";
             return RedirectToAction("ManageCart");
-            //return RedirectToAction("ManageCart", new { id = FilmID });
+     
         }
 
         [HttpGet]
         public IActionResult CheckOut()
         {
+            string serialJSON = HttpContext.Session.GetString(SessionCart);
             List<CartItem> cart = new List<CartItem>();
-            if (HttpContext.Session.GetString(SessionCart) != null)
+            cart = JsonSerializer.Deserialize<List<CartItem>>(serialJSON);
+            foreach(var item in cart){
+            CartLine newCartLine = new CartLine
             {
-                string serialJSON = HttpContext.Session.GetString(SessionCart);
-                cart = JsonSerializer.Deserialize<List<CartItem>>(serialJSON);
+                UserID = _userManager.GetUserId(User),
+                FilmID = item.FilmID,
+                OrderQuantity = item.OrderQuantity,
+                OrderDate = item.OrderDate
+            };
+            _context.Add(newCartLine);
+            _context.SaveChanges();
             }
-            var userID = _userManager.GetUserId(User);
-            return Ok(userID);
+            HttpContext.Session.Clear();
+            return RedirectToAction("CheckOutConfirmed");
         }
+
+        public IActionResult CheckOutConfirmed()
+        {
+
+            return View();
+        }
+
 
 
 

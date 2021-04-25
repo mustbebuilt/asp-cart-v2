@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\LabStudent-55-504266\\Source\\Repos\\asp-cart-v2\\MyFilmMVCV1\\MyFilmMVCV1.csproj": {}
+    "C:\\Users\\LabStudent-55-504266\\source\\repos\\asp-cart-v2\\MyFilmMVCV1\\MyFilmMVCV1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\LabStudent-55-504266\\Source\\Repos\\asp-cart-v2\\MyFilmMVCV1\\MyFilmMVCV1.csproj": {
+    "C:\\Users\\LabStudent-55-504266\\source\\repos\\asp-cart-v2\\MyFilmMVCV1\\MyFilmMVCV1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LabStudent-55-504266\\Source\\Repos\\asp-cart-v2\\MyFilmMVCV1\\MyFilmMVCV1.csproj",
+        "projectUniqueName": "C:\\Users\\LabStudent-55-504266\\source\\repos\\asp-cart-v2\\MyFilmMVCV1\\MyFilmMVCV1.csproj",
         "projectName": "MyFilmMVCV1",
-        "projectPath": "C:\\Users\\LabStudent-55-504266\\Source\\Repos\\asp-cart-v2\\MyFilmMVCV1\\MyFilmMVCV1.csproj",
+        "projectPath": "C:\\Users\\LabStudent-55-504266\\source\\repos\\asp-cart-v2\\MyFilmMVCV1\\MyFilmMVCV1.csproj",
         "packagesPath": "C:\\Users\\LabStudent-55-504266\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LabStudent-55-504266\\Source\\Repos\\asp-cart-v2\\MyFilmMVCV1\\obj\\",
+        "outputPath": "C:\\Users\\LabStudent-55-504266\\source\\repos\\asp-cart-v2\\MyFilmMVCV1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
