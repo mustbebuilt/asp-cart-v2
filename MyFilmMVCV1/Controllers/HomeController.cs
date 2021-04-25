@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
@@ -22,10 +23,14 @@ namespace MyFilmMVCV1.Controllers
 
         private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
+        private readonly UserManager<AppIdentityUser> _userManager;
+
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, UserManager<AppIdentityUser> userManager
+      )
         {
             _context = context;
             _logger = logger;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -35,16 +40,11 @@ namespace MyFilmMVCV1.Controllers
 
         public IActionResult AllMovies()
         {
-            if (String.IsNullOrEmpty(HttpContext.Session.GetString(SessionName)))
-            {
-                HttpContext.Session.SetString(SessionName, "Jarvik");
-                HttpContext.Session.SetInt32(SessionAge, 24);
-            }
             List<Film> model = _context.Films.ToList();
             return View(model);
         }
 
- public IActionResult Search(String SearchString, String certType)
+        public IActionResult Search(String SearchString, String certType)
         {
 
             ViewBag.Name = HttpContext.Session.GetString(SessionName);
@@ -77,7 +77,6 @@ namespace MyFilmMVCV1.Controllers
             ViewData["filmCertsSelectList"] = new SelectList(filmCerts.ToList());
             return View(model);
         }
-
 
         // note uses id because of routing in startup.cs
         [HttpGet]
@@ -126,7 +125,17 @@ namespace MyFilmMVCV1.Controllers
             return RedirectToAction("MovieDetails");
         }
 
-
+        public IActionResult TestQuery(String filmName)
+        {
+           // if (!string.IsNullOrEmpty(filmName))
+           // {
+                var FilmQuery = from m in _context.Films
+                                where m.FilmTitle == filmName
+                                select m;
+                Film model = FilmQuery.FirstOrDefault();
+                return View(model);
+           // }
+        }
 
         [HttpGet]
         public IActionResult ManageCart()
@@ -167,6 +176,20 @@ namespace MyFilmMVCV1.Controllers
             return RedirectToAction("ManageCart");
             //return RedirectToAction("ManageCart", new { id = FilmID });
         }
+
+        [HttpGet]
+        public IActionResult CheckOut()
+        {
+            List<CartItem> cart = new List<CartItem>();
+            if (HttpContext.Session.GetString(SessionCart) != null)
+            {
+                string serialJSON = HttpContext.Session.GetString(SessionCart);
+                cart = JsonSerializer.Deserialize<List<CartItem>>(serialJSON);
+            }
+            var userID = _userManager.GetUserId(User);
+            return Ok(userID);
+        }
+
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

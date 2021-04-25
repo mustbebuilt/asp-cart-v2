@@ -9,7 +9,7 @@ using MyFilmMVCV1.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Http;
+
 
 namespace MyFilmMVCV1.Controllers
 {
@@ -89,7 +89,6 @@ namespace MyFilmMVCV1.Controllers
 
                 if (result.Succeeded)
                 {
-                  
                     return RedirectToAction("Index", "CMS");
                 }
                 else
@@ -114,6 +113,68 @@ namespace MyFilmMVCV1.Controllers
         public IActionResult AccessDenied()
         {
             return View();
+        }
+
+        // standard user
+        public IActionResult UserRegister(Register obj)
+        {
+            if (ModelState.IsValid)
+            {
+                if (!roleManager.RoleExistsAsync("StandardUser").Result)
+                {
+                    AppIdentityRole role = new AppIdentityRole();
+                    role.Name = "StandardUser";
+                    IdentityResult roleResult = roleManager.
+                    CreateAsync(role).Result;
+                }
+
+                AppIdentityUser user = new AppIdentityUser();
+                user.UserName = obj.UserName;
+                user.Email = obj.Email;
+                user.FullName = obj.FullName;
+                user.BirthDate = obj.BirthDate;
+
+                IdentityResult result = userManager.CreateAsync
+                (user, obj.Password).Result;
+
+                if (result.Succeeded)
+                {
+                    userManager.AddToRoleAsync(user, "StandardUser").Wait();
+                    return RedirectToAction("UserSignIn", "Security");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid user details");
+                }
+            }
+            return View(obj);
+        }
+
+        public IActionResult UserSignIn()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UserSignIn(SignIn obj)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = signinManager.PasswordSignInAsync
+                (obj.UserName, obj.Password,
+                    obj.RememberMe, false).Result;
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid user details");
+                }
+            }
+            return View(obj);
         }
 
 

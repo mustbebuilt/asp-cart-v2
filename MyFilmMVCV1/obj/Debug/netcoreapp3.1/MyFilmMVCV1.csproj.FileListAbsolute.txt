@@ -146,7 +146,6 @@ C:\Users\LabStudent-55-504266\Source\Repos\asp-cart-v2\MyFilmMVCV1\obj\Debug\net
 C:\Users\LabStudent-55-504266\Source\Repos\asp-cart-v2\MyFilmMVCV1\obj\Debug\netcoreapp3.1\Razor\Views\CMS\UpdateMovie.cshtml.g.cs
 C:\Users\LabStudent-55-504266\Source\Repos\asp-cart-v2\MyFilmMVCV1\obj\Debug\netcoreapp3.1\Razor\Views\Home\AllMovies.cshtml.g.cs
 C:\Users\LabStudent-55-504266\Source\Repos\asp-cart-v2\MyFilmMVCV1\obj\Debug\netcoreapp3.1\Razor\Views\Home\Components\ShoppingCart\Default.cshtml.g.cs
-C:\Users\LabStudent-55-504266\Source\Repos\asp-cart-v2\MyFilmMVCV1\obj\Debug\netcoreapp3.1\Razor\Views\Home\Components\WishList\Default.cshtml.g.cs
 C:\Users\LabStudent-55-504266\Source\Repos\asp-cart-v2\MyFilmMVCV1\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\LabStudent-55-504266\Source\Repos\asp-cart-v2\MyFilmMVCV1\obj\Debug\netcoreapp3.1\Razor\Views\Home\ManageCart.cshtml.g.cs
 C:\Users\LabStudent-55-504266\Source\Repos\asp-cart-v2\MyFilmMVCV1\obj\Debug\netcoreapp3.1\Razor\Views\Home\MovieDetails.cshtml.g.cs
@@ -201,3 +200,5 @@ C:\Users\LabStudent-55-504266\Source\Repos\asp-cart-v2\MyFilmMVCV1\bin\Debug\net
 C:\Users\LabStudent-55-504266\Source\Repos\asp-cart-v2\MyFilmMVCV1\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\LabStudent-55-504266\Source\Repos\asp-cart-v2\MyFilmMVCV1\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\LabStudent-55-504266\Source\Repos\asp-cart-v2\MyFilmMVCV1\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\LabStudent-55-504266\Source\Repos\asp-cart-v2\MyFilmMVCV1\obj\Debug\netcoreapp3.1\Razor\Views\Security\UserRegister.cshtml.g.cs
+C:\Users\LabStudent-55-504266\Source\Repos\asp-cart-v2\MyFilmMVCV1\obj\Debug\netcoreapp3.1\Razor\Views\Security\UserSignIn.cshtml.g.cs

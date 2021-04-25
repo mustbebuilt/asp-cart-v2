@@ -8,6 +8,9 @@ main{
     max-width:1200px;
     flex-direction:row;
 }
+main.noFlex{
+    display:block;
+}
 header {
     position: -webkit-sticky; /* Safari */
     position: sticky;
@@ -28,6 +31,15 @@ header {
 
 .login > form > button.delete {
     margin-top: 0;
+}
+label {
+    display: block;
+}
+
+input[type=text], input[type=password], textarea {
+    font-family: Helvetica, Arial, sans-serif;
+    padding: 3px 5px;
+    font-size: 1.2em;
 }
 nav ul{
     list-style:none;
@@ -128,7 +140,7 @@ input[type=number] {
 .cartSummary p {
    margin: 0;
 }
-.cartSummary p a {
+.cartSummary p a, .btn {
         border-radius: 6px;
         color: #000;
         text-transform: uppercase;
